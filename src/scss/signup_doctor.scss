@@ -1,0 +1,37 @@
+.Signup_Doctor {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url("../assets/img/bk.jpg");
+
+    .form-signup {
+        padding: 10px;
+        width: 400px;
+        height: 650px;
+        margin: auto;
+        text-align: center;
+        margin-top: 100px;
+        background-color: rgba(255, 255, 255, 0.5);
+
+        form {
+            display: block;
+            width: 100%;
+            height: 100%;
+            img{
+                height: 100px;
+            }
+            input {
+                display: block;
+                width: 100%;
+                height: 40px;
+                margin-top: 20px;
+                border: none;
+                padding: 15px;
+                box-sizing: border-box;
+            }
+        }
+
+
+    }
+}

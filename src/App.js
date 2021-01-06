@@ -1,24 +1,53 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+
+import Home from './components/Home';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import Login_Doctor from './components/Login_Doctor'
+import Login_Patient from './components/Login_Patient'
+import Signup_Doctor from './components/Signup_Doctor'
+import Signup_Patient from './components/Signup_Patient'
 
 function App() {
+  var x = false;
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <BrowserRouter>
+      <Switch>
+        <Route
+          path='/'
+          exact
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          {/* {x? <Home></Home>: <Redirect to={'/login'} />} */}
+          <Home></Home>
+        </Route>
+
+
+
+        <Route path='/sigunup'>
+          <Signup></Signup>
+        </Route>
+
+        <Route path='/login' exact>
+          <Login></Login>
+        </Route>
+        <Route path='/login/doctor'>
+          <Login_Doctor></Login_Doctor>
+        </Route>
+
+        <Route path='/login/patient'>
+          <Login_Patient></Login_Patient>
+        </Route>
+
+        <Route path='/signup/doctor'>
+          <Signup_Doctor></Signup_Doctor>
+        </Route>
+
+        <Route path='/signup/patient'>
+          <Signup_Patient></Signup_Patient>
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
