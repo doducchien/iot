@@ -123,7 +123,7 @@ function Home_Doctor(props) {
                 <DialogActions>
 
                     <Button style={{margin:'auto', width:'100%'}} variant="contained" color="secondary" onClick={handleClose2}>
-                        OK
+                        GẮN
                     </Button>
                 </DialogActions>
             </Dialog>
