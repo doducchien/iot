@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@material-ui/core/Button';
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+
 
 
 Login.propTypes = {
@@ -20,11 +22,10 @@ const style_btn = {
     height: '50px'
 }
 function Login(props) {
-    const [role, setRole] = useState(null)
-    function pickRole(value) {
-        setRole(value)
-    }
+    const load = useSelector(state=> state.load_reducer)
+    const info_login = JSON.parse(localStorage.getItem('user'))
     return (
+        info_login === null?
         <div className="Login">
 
             <div className='pick-role'>
@@ -36,6 +37,8 @@ function Login(props) {
 
 
         </div>
+        :
+        <Redirect to={'/'}/>
     );
 }
 

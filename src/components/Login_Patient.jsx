@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import '../scss/login_patient.scss'
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux'
+
 import bk from '../assets/img/logobk.png'
 Login_Patient.propTypes = {
     
@@ -18,7 +20,11 @@ const style_link = {
     textDecoration: 'none',
     fontSize: '20px'
 }
+
+
 function Login_Patient(props) {
+    const load = useSelector(state=> state.load_reducer)
+    const info_login = JSON.parse(localStorage.getItem('user'))
     const [input_login, set_input_login] = useState({
         phone: "",
         password: ""
@@ -40,6 +46,7 @@ function Login_Patient(props) {
         console.log(input_login);
     }
     return (
+        info_login === null?
         <div className="Login_Patient">
             <div className='form-login'>
                 <form onSubmit={onSubmit}>
@@ -53,6 +60,8 @@ function Login_Patient(props) {
                 </form>
             </div>
         </div>
+        :
+        <Redirect to={'/'}/>
     );
 }
 
