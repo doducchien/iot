@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import '../scss/signup_doctor.scss';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 

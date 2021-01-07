@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import '../scss/login_doctor.scss';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
-import bk from '../assets/img/logobk.png'
+import bk from '../assets/img/logobk.png';
+import Alert from '@material-ui/lab/Alert';
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom'
@@ -26,6 +27,9 @@ const style_link = {
     textDecoration: 'none',
     fontSize: '20px'
 }
+const style_alert = {
+    width: '400px'
+}
 
 // function component
 function Login_Doctor(props) {
@@ -35,6 +39,7 @@ function Login_Doctor(props) {
         phone_number: "",
         password: ""
     })
+    const [login_fail, set_login_fail] = useState(false)
     const dispatch = useDispatch()
 
     const handleChange = (event) => {
@@ -57,6 +62,13 @@ function Login_Doctor(props) {
                     dispatch(actions.get_local_user())
                     dispatch(actions.load())
                 }
+                else {
+                    set_login_fail(true)
+                    var time_out = setTimeout(() => {
+                        set_login_fail(false);
+                        clearTimeout(time_out)
+                    }, 2000)
+                }
 
             })
 
@@ -64,6 +76,9 @@ function Login_Doctor(props) {
     return (
         info_login === null ?
             <div className="Login_Doctor">
+                {
+                    login_fail ? <Alert style={style_alert} severity="error">Đăng nhập thất bại ! Vui lòng thử lại.</Alert> : ''
+                }
                 <div className='form-login'>
                     <form onSubmit={onSubmit}>
                         <h2>ĐĂNG NHẬP CHO BÁC SỸ VÀ Y TÁ</h2>

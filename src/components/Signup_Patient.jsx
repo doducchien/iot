@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
-import '../scss/signup_patient.scss';
 import Button from '@material-ui/core/Button';
 import Alert from '@material-ui/lab/Alert';
 import axios from 'axios'
@@ -89,7 +88,7 @@ function Signup_Patient(props) {
                     <input type="text" name='phone_number' placeholder="Nhập số điện thoại..." onChange={handleChange}/>
                     <input type="text" name='doctor_manager' placeholder="Nhập id bác sỹ..." onChange={handleChange}/>
 
-                    <Button style={style_btn} type="submit" variant="contained" color="secondary">Đăng nhập</Button>
+                    <Button style={style_btn} type="submit" variant="contained" color="secondary">Đăng ký</Button>
                     <Link style={style_link} to='/login/patient'>Đăng nhập cho bệnh nhân và người nhà</Link>
 
                 </form>
