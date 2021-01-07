@@ -64,7 +64,7 @@ function Home_Doctor(props) {
         await set_open_dialog(true);
     }
 
-    const Dialog_add_device = (props) => {
+    const Dialog_add_device_result = (props) => {
         const { is_add_success } = props
         return (
             <Dialog
@@ -146,7 +146,7 @@ function Home_Doctor(props) {
     
     return (
         <div className='Home_Doctor'>
-            <Dialog_add_device is_add_success={is_add_success}></Dialog_add_device>
+            <Dialog_add_device_result is_add_success={is_add_success}></Dialog_add_device_result>
             <Dialog_assign_patient id_device_assigning={id_device_assigning}></Dialog_assign_patient>
             <div className="left"></div>
             <div className="right">
