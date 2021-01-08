@@ -9,6 +9,38 @@
     .left {
         width: 65%;
         height: 100%;
+        box-sizing: border-box;
+        .graph{
+            height: 600px;
+            width: 100%;
+            border: 1px solid gray;
+            box-sizing: border-box;
+
+        }
+        .list-patient{
+            width: 100%;
+            height: calc(100% - 600px);
+            border: 1px solid gray;
+            box-sizing: border-box;
+            li{
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                background-color: hotpink;
+                line-height: 80px;
+                list-style: none;
+                text-align: center;
+                cursor: pointer;
+                display: inline-block;
+                margin-left: 3px;
+                margin-right: 3px;
+                margin-top: 5px;
+            }
+            li:hover{
+                box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.15 ), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.15);
+                
+            }
+        }
 
     }
 
@@ -16,6 +48,8 @@
         width: 35%;
         height: 100%;
         box-sizing: border-box;
+        // box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.15 ), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.15);
+
 
         
         .add-device {
@@ -43,11 +77,13 @@
                 height: calc(100% - 30px);
                 list-style: none;
                 margin: 0;
+                padding: 0;
                 display: block;
                 overflow-y: auto;
                 overflow-x: hidden;
                 li {
-                    width: 100%;
+                    width:90%;
+                    // margin: auto;
                     height: 40px;
                     line-height: 40px;
                     background-color: rgb(201, 245, 201);
@@ -55,8 +91,12 @@
                     padding: 10px;
                     list-style: none;
                     cursor: pointer;
-                    border-radius: 20px;
+                    // border-radius: 20px;
                     // box-sizing: border-box;
+                }
+                li:hover{
+                    box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.15 ), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.15);
+                    
                 }
             }
 

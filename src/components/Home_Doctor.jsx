@@ -1,6 +1,9 @@
 import React, { useState, useMemo, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
+
 import { useSelector, useDispatch } from 'react-redux';
+import * as actions from '../actions/index'
+
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -12,7 +15,8 @@ import Alert from '@material-ui/lab/Alert';
 
 import axios from 'axios'
 
-import List_Device from './List_Device'
+import List_Device from './List_Device';
+import List_Patient from './List_Patient';
 
 
 const Transition = React.forwardRef(function Transition(props, ref) {
@@ -28,13 +32,16 @@ const style_alert = {
 function Home_Doctor(props) {
     const info_login = JSON.parse(localStorage.getItem('user'))
     const load = useSelector(state => state.load_reducer)
+    const dispatch = useDispatch()
     const [id_device_add, set_id_device_add] = useState('')
     const [id_device_assigning, set_id_device_assigning] = useState('')
+    const [data_show_patient, set_data_show_patient] = useState('')
     const [is_add_success, set_is_add_success] = useState({
         value: 0
     })
     const [open_dialog, set_open_dialog] = useState(false);
     const [open_dialog_assign_patient, set_open_dialog_assign_patient] = useState(false)
+    const [open_dialog_show_patient, set_open_dialog_show_patient] = useState(false)
     const handleChange_add_device = (event) => {
         var id = event.target.value;
         set_id_device_add(id);
@@ -122,6 +129,9 @@ function Home_Doctor(props) {
                 </DialogContent>
                 <DialogActions>
 
+                    <Button style={{margin:'auto', width:'100%'}} variant="contained" color="primary" onClick={handleClose2}>
+                        HỦY
+                    </Button>
                     <Button style={{margin:'auto', width:'100%'}} variant="contained" color="secondary" onClick={handleClose2}>
                         GẮN
                     </Button>
@@ -129,7 +139,36 @@ function Home_Doctor(props) {
             </Dialog>
         )
     }
+    const Dialog_show_patient = (props)=>{
+        const {data_show_patient} = props;
+        return (
+            <Dialog
+                open={open_dialog_show_patient}
+                TransitionComponent={Transition}
+                keepMounted
+                onClose={handleClose3}
+                aria-labelledby="alert-dialog-slide-title"
+                aria-describedby="alert-dialog-slide-description"
+            >
+                <DialogTitle id="alert-dialog-slide-title">Gắn thiết bị với bệnh nhân</DialogTitle>
+                <DialogContent>
+                    <DialogContentText id="alert-dialog-slide-description">
+                        {data_show_patient.full_name}
 
+                    </DialogContentText>
+                </DialogContent>
+                <DialogActions>
+
+                    <Button style={{margin:'auto', width:'100%'}} variant="contained" color="primary" onClick={handleClose3}>
+                        HỦY
+                    </Button>
+                    <Button style={{margin:'auto', width:'100%'}} variant="contained" color="secondary" onClick={handleClose3}>
+                        GẮN
+                    </Button>
+                </DialogActions>
+            </Dialog>
+        )
+    }
     const handleClose1 = () => {
         set_id_device_add('')
         set_open_dialog(false)
@@ -137,18 +176,45 @@ function Home_Doctor(props) {
     const handleClose2 = () => {
         set_open_dialog_assign_patient(false)
     }
+    const handleClose3 = () => {
+        set_open_dialog_show_patient(false)
+    }
 
     const openDialogAssignPatient_callback = (data)=>{
         set_id_device_assigning(data)
         set_open_dialog_assign_patient(true)
         console.log(data)
     }
-    
+    const openDialogPatient_callback = (data)=>{
+        set_data_show_patient(data);
+        set_open_dialog_show_patient(true)
+    }
+    const logout = ()=>{
+        localStorage.removeItem('user');
+        dispatch(actions.load())
+    }
     return (
         <div className='Home_Doctor'>
             <Dialog_add_device_result is_add_success={is_add_success}></Dialog_add_device_result>
             <Dialog_assign_patient id_device_assigning={id_device_assigning}></Dialog_assign_patient>
-            <div className="left"></div>
+            <Dialog_show_patient data_show_patient={data_show_patient}></Dialog_show_patient>
+            <Button 
+                style={{position:'absolute', bottom: '0', right: '0'}}
+                variant="contained" color="primary" 
+                onClick={logout}
+            >
+                Đăng xuất
+            </Button>
+            <div className="left">
+                <div className="graph">
+                    <div className="logout">
+                    
+                    </div>
+                </div>
+                <div className="list-patient">
+                    <List_Patient openDialogPatient_callback={openDialogPatient_callback}></List_Patient>
+                </div>
+            </div>
             <div className="right">
                 <form onSubmit={submit_add_device} className="add-device">
                     <input onChange={handleChange_add_device} value={id_device_add} type="text" name="id_device" placeholder="Nhập id thiết bị...." />
