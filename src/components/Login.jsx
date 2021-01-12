@@ -29,8 +29,8 @@ function Login(props) {
         <div className="Login">
 
             <div className='pick-role'>
-                <h1>Đăng nhập</h1>
-                <h3>Bạn là ai ?</h3>
+                <h1>Bạn là ai ?</h1>
+                
                 <Button style={style_btn} variant="contained" color="primary"><Link style={style_link} to='/login/doctor'>Bác sỹ</Link></Button>
                 <Button style={style_btn} variant="contained" color="secondary"><Link style={style_link} to='/login/patient'>Bệnh nhân</Link></Button>
             </div>

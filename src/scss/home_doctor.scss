@@ -13,14 +13,11 @@
         .graph{
             height: 600px;
             width: 100%;
-            border: 1px solid gray;
             box-sizing: border-box;
 
         }
         .list-patient{
-            width: 100%;
             height: calc(100% - 600px);
-            border: 1px solid gray;
             box-sizing: border-box;
             li{
                 width: 80px;

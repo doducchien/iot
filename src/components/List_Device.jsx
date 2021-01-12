@@ -21,7 +21,7 @@ function List_Device(props) {
                 if (res.data) {
                     let list_ = []
                     res.data.forEach(item => {
-                        list_.push(<li onClick={()=>open_dialog_assign_patient(item.id_device)} key={i}>{'ID: ' + item.id_device + ' ---  patient: ' + item.patient}</li>)
+                        list_.push(<li style={item.patient !== null? {color: 'white', backgroundColor:'#C32361'}: {}} onClick={()=>open_dialog_assign_patient(item.id_device)} key={i}>{'ID: ' + item.id_device + ' ---  patient: ' + item.patient}</li>)
                         i++;
                     });
                     set_list(list_)
