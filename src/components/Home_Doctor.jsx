@@ -14,7 +14,6 @@ import Slide from '@material-ui/core/Slide';
 import Alert from '@material-ui/lab/Alert';
 
 import axios from 'axios';
-import io from 'socket.io-client'
 
 import List_Device from './List_Device';
 import List_Patient from './List_Patient';
@@ -117,6 +116,7 @@ function Home_Doctor(props) {
             </Dialog>
         )
     }
+
     const Dialog_assign_patient = (props) => {
         const { id_device_assigning, info_login } = props;
         const [phone_number, set_phone_number] = useState('')
@@ -200,6 +200,7 @@ function Home_Doctor(props) {
             </Dialog>
         )
     }
+
     const Dialog_show_patient = (props) => {
         const { data_show_patient } = props;
         const show_bpm = ()=>{
@@ -287,6 +288,7 @@ function Home_Doctor(props) {
             <div className="left">
                 <div className="graph">
                     <Bpm
+                        role={true}
                         room={room}
                         info_login={info_login}
                     >

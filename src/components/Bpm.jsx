@@ -14,7 +14,7 @@ Bpm.propTypes = {
 };
 
 function Bpm(props) {
-    const { room, info_login } = props;
+    const { role, room, info_login } = props;
     const [bpm, set_bpm] = useState('');
     const [led, set_led] = useState(false);
     const y = useRef(0)
@@ -82,12 +82,12 @@ function Bpm(props) {
             ...info_login,
             room: room
         }
-        var action = led? "turn_off_led": "turn_on_led";
+        var action = led ? "turn_off_led" : "turn_on_led";
         axios.post('http://localhost:2206/device/' + action, body)
             .then(res => {
-                if(res.data) set_led(!led);
+                if (res.data) set_led(!led);
             });
-        
+
     }
 
 
@@ -99,15 +99,18 @@ function Bpm(props) {
                 // width={}
                 height={120}
             />
-            {y.current}
-            <Button
-                onClick={toggle_led}
-                style={{ display: 'block', margin: 'auto' }}
-                variant="contained"
-                color={led? "primary": "secondary"}
+            <div style={(role ? { display: 'block' } : { display: 'none' })}>
+                <Button
+                    onClick={toggle_led}
+                    style={{ display: 'block', margin: 'auto' }}
+                    variant="contained"
+                    color={led ? "primary" : "secondary"}
                 >
-                    {led?'Tắt cảnh báo': 'Bật cảnh báo'}
-            </Button>
+                    {led ? 'Tắt cảnh báo' : 'Bật cảnh báo'}
+                </Button>
+            </div>
+
+
         </div>
     );
 }
