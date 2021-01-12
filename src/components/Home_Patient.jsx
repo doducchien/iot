@@ -37,18 +37,7 @@ function Home_Patient(props) {
     const info_login = JSON.parse(localStorage.getItem('user'))
     const load = useSelector(state => state.load_reducer);
     const [room, set_room] = useState(info_login.phone_number);
-    // useEffect(()=>{
-    //     var body ={
-    //         ...info_login,
-    //     }
-    //     axios.post('http://localhost:2206/patient/get_device_id', body)
-    //     .then(res=>{
-    //         if(res.data){
-    //             console.log(res.data);
-    //             set_room(res.data);
-    //         }
-    //     })
-    // },[])
+   
 
 
     return (
